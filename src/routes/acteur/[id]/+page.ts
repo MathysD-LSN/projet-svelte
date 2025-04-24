@@ -16,10 +16,25 @@ export const load = async ({ params, fetch }) => {
     if (!response.ok) {
       throw new Error('Failed to fetch person data');
     }
+    
+    const responseMovies = await fetch(`https://api.themoviedb.org/3/person/${personId}/movie_credits?language=en-US`, {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          Accept: 'application/json',
+        },
+      });
+  
+      if (!responseMovies.ok) {
+        throw new Error('Failed to fetch person data');
+      }
 
     const data = await response.json();
+    const dataMovies = await responseMovies.json();
 
-    return data;
+    return {
+        actorData : data,
+        moviesData: dataMovies
+    };
   } catch (err) {
     console.error('Error fetching person data:', err);
     throw error(500, 'Error fetching person data');
