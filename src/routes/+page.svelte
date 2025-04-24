@@ -1,63 +1,63 @@
 <script lang="ts">
-    import SearchBar from '../lib/components/SearchBar.svelte';
-    import { searchMovies } from '../utils/searchMovies';
-  
-    let results: any[] = [];
-    let query: string = '';
-    let isLoading = false;
-    let lastFetchTimestamp: number | null = null;
-  
-    const handleSearch = async (event: any) => {
-        query = event.detail;
-      const now = Date.now();
-  
-      // Throttling : évite trop de requêtes
-      if (lastFetchTimestamp && now - lastFetchTimestamp < 300) {
-        return;
-      }
-  
-      lastFetchTimestamp = now;
-      isLoading = true;
-      try {
-        results = await searchMovies(query);
-      } catch (err) {
-        console.error(err);
-        results = [];
-      } finally {
-        isLoading = false;
-      }
-    };
-  </script>
-  
-  {console.log(results, query)}
+	import { onMount } from 'svelte';
+	import Hero from '../lib/components/Hero.svelte';
+	import { getMovies } from '../utils/getMovies';
 
+	let movies: any[] = [];
+	let isLoadingMovies = false;
 
-  <div class="container" style="max-width: 500px;">
-    <SearchBar on:search={handleSearch} />
-    <!-- Résultats -->
-    {#if isLoading}
-      <p class="text-center">Chargement...</p>
-    {:else if results && results.length > 0}
-      <ul>
-        {#each results as result}
-          <li class="flex items-center gap-3 border-b p-2">
-            <a href={'/films/' + result.id} class="flex items-center gap-3">
-              {#if result.poster_path}
-                <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt={result.title} class="w-12 h-18" />
-              {:else}
-                <div class="w-12 h-18 bg-gray-200" ></div>
-              {/if}
-              <h3>{result.title}</h3>
-            </a>
-          </li>
-        {/each}
-      </ul>
+	async function fetchMovies() {
+		isLoadingMovies = true;
+		try {
+			movies = (await getMovies(1)) || [];
+		} catch (e) {
+			console.error(e);
+			movies = [];
+		} finally {
+			isLoadingMovies = false;
+		}
+	}
 
-        {:else if query.length > 0 && results && results.length === 0}
-        <p class="text-center">Aucun film trouvé.</p>
+	onMount(fetchMovies);
+</script>
 
-        {:else if query && query.length === 0}
-        <div></div>
-    {/if}
-  </div>
-  
+<Hero onSearch={() => {}} />
+
+<div class="mx-auto mt-12 w-full px-4 text-center sm:max-w-lg md:max-w-2xl lg:max-w-6xl">
+	{#if isLoadingMovies}
+		<p class="py-4">Chargement des dernières sorties…</p>
+	{:else}
+		<h2 class="mb-4 text-3xl font-semibold">Dernières sorties</h2>
+		<ul class="grid grid-cols-1 gap-6 py-4 sm:grid-cols-2 lg:grid-cols-4">
+			{#each movies as movie}
+				<li class="mx-auto max-w-xs overflow-hidden rounded-2xl bg-white shadow-lg">
+					<div class="flex h-full flex-col p-4">
+						<div class="mb-4 h-32 overflow-hidden rounded-lg">
+							{#if movie.poster_path}
+								<img
+									src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+									alt={movie.title}
+									class="h-full w-full object-cover"
+								/>
+							{:else}
+								<div class="h-full w-full bg-gray-200"></div>
+							{/if}
+						</div>
+						<h3 class="mb-2 text-left text-lg font-semibold text-gray-900">
+							{movie.title}
+						</h3>
+						<p class="mb-6 line-clamp-3 flex-grow text-left text-sm text-gray-600">
+							{movie.overview || 'Pas de description disponible.'}
+						</p>
+						<a
+							href={'/films/' + movie.id}
+							class="self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+						>
+							Plus d'infos
+						</a>
+					</div>
+				</li>
+			{/each}
+		</ul>
+	{/if}
+</div>
