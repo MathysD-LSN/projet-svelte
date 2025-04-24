@@ -7,8 +7,8 @@
 				<a href="/" class="transition duration-200 hover:text-blue-200 hover:underline">Accueil</a>
 			</li>
 			<li>
-				<a href="/recherche" class="transition duration-200 hover:text-blue-200 hover:underline"
-					>Rechercher</a
+				<a href="/catalogue" class="transition duration-200 hover:text-blue-200 hover:underline"
+					>Catalogue</a
 				>
 			</li>
 		</ul>

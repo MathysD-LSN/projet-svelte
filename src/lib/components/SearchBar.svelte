@@ -85,12 +85,23 @@
 		<button
 			type="button"
 			on:click={handleClick}
-			class="flex gap-2 w-32 rounded-r-md border border-l-0 border-blue-500 bg-blue-500 p-3 text-white transition duration-300 hover:bg-blue-600 focus:border-blue-600 focus:shadow-inner focus:outline-none"
+			class="flex w-32 gap-2 rounded-r-md border border-l-0 border-blue-500 bg-blue-500 p-3 text-white transition duration-300 hover:bg-blue-600 focus:border-blue-600 focus:shadow-inner focus:outline-none"
 		>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
-          
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="size-6"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+				/>
+			</svg>
+
 			Chercher
 		</button>
 	</div>
