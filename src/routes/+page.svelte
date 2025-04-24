@@ -1,30 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import Hero from '../lib/components/Hero.svelte';
-	import { getMovies } from '../utils/getMovies';
+	import Hero from '$lib/components/Hero.svelte';
+	export let data: { movies: any[] };
 
-	let movies: any[] = [];
-	let isLoadingMovies = false;
-
-	async function fetchMovies() {
-		isLoadingMovies = true;
-		try {
-			movies = (await getMovies(1)) || [];
-		} catch (e) {
-			console.error(e);
-			movies = [];
-		} finally {
-			isLoadingMovies = false;
-		}
-	}
-
-	onMount(fetchMovies);
+	const movies = data.movies;
 </script>
 
 <Hero onSearch={() => {}} />
 
 <div class="mx-auto mt-12 w-full px-4 text-center sm:max-w-lg md:max-w-2xl lg:max-w-6xl">
-	{#if isLoadingMovies}
+	{#if movies.length === 0}
 		<p class="py-4">Chargement des dernières sorties…</p>
 	{:else}
 		<h2 class="mb-4 text-3xl font-semibold">Dernières sorties</h2>
@@ -51,9 +35,12 @@
 						</p>
 						<a
 							href={'/films/' + movie.id}
-							class="self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+							class="flex items-center gap-1 self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
 						>
-							Plus d'infos
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            Plus d'infos
 						</a>
 					</div>
 				</li>

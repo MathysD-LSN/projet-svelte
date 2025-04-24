@@ -8,7 +8,7 @@
 	style="background-image: url('/images/hero-image.jpg');"
 >
 	<div class="flex h-full w-full flex-col justify-center bg-black/70 px-6 text-center text-white">
-		<h1 class="mb-4 text-2xl font-bold sm:text-4xl md:text-5xl">Bienvenue sur CineApp</h1>
+		<h1 class="mb-4 text-2xl font-bold sm:text-4xl md:text-5xl">Bienvenue sur CineFilm</h1>
 		<p class="mx-auto mb-6 max-w-lg text-sm sm:text-base md:text-lg">
 			Découvrez les derniers films à l’affiche et trouvez votre prochain coup de cœur.
 		</p>
