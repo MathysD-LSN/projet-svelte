@@ -7,7 +7,7 @@
 
 <Hero onSearch={() => {}} />
 
-<div class="mx-auto mt-12 w-full px-4 text-center sm:max-w-lg md:max-w-2xl lg:max-w-6xl">
+<div class="mx-auto mt-12 w-full pt-4 pb-12 text-center sm:max-w-lg md:max-w-2xl lg:max-w-[90%]">
 	{#if movies.length === 0}
 		<p class="py-4">Chargement des dernières sorties…</p>
 	{:else}
@@ -37,10 +37,17 @@
 							href={'/films/' + movie.id}
 							class="flex items-center gap-1 self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
 						>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            Plus d'infos
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="size-5"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+							</svg>
+							Détails
 						</a>
 					</div>
 				</li>
