@@ -10,31 +10,36 @@ export interface Movie {
 }
 
 export const getMovies = async (): Promise<Movie[]> => {
-	const allMovies: Movie[] = [];
-	let page = 1;
-	let totalPages = 1;
-
 	try {
-		do {
-			const res = await fetch(
-				`https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=${page}`,
-				{
-					headers: {
-						Authorization: `Bearer ${apiKey}`,
-						Accept: 'application/json'
-					}
-				}
-			);
-			if (!res.ok) throw new Error(`TMDB error, page ${page}`);
-			const data = await res.json();
+		// 1. Récupère d'abord la première page
+		const res1 = await fetch(
+			`https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1`,
+			{ headers: { Authorization: `Bearer ${apiKey}` } }
+		);
+		if (!res1.ok) throw new Error('TMDB error, page 1');
+		const data1 = await res1.json();
 
-			allMovies.push(...data.results);
+		const totalPages = data1.total_pages;
+		const firstResults: Movie[] = data1.results;
 
-			totalPages = data.total_pages;
-			page++;
-		} while (page <= totalPages);
+		// 2. Prépare les promises pour les pages
+		const pageNumbers = Array.from({ length: totalPages - 1 }, (_, i) => i + 2);
+		const fetchPages = pageNumbers.map((page) =>
+			fetch(`https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=${page}`, {
+				headers: { Authorization: `Bearer ${apiKey}` }
+			})
+				.then((res) => {
+					if (!res.ok) throw new Error(`TMDB error, page ${page}`);
+					return res.json();
+				})
+				.then((json) => json.results as Movie[])
+		);
 
-		return allMovies;
+		// 3. Exécute tout en parallèle
+		const otherResultsArrays = await Promise.all(fetchPages);
+
+		// 4. Aplatit et renvoie
+		return firstResults.concat(...otherResultsArrays);
 	} catch (err) {
 		console.error('getMovies — Erreur :', err);
 		return [];
