@@ -5,7 +5,7 @@
 	
 	const genres = data.genres;
 	const movies = data.movies;
-
+	console.log(movies);
 	const itemsPerPage = 20;
 	let currentPage = 1;
 

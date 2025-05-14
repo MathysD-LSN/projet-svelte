@@ -1,8 +1,8 @@
 <script lang="ts">
 	export let data;
-	const { movieData, alternativeMovies, credits, videos = { results: [] } } = data;
+	const { movieData, alternativeMovies, credits} = data;
 	const casts = credits.cast.slice(0, 10);
-	const trailer = videos.results.find((v: { type: string }) => v.type === 'Trailer');
+	const trailer = movieData?.videos?.results?.find((v: { type: string }) => v.type === 'Trailer');
 
 	import { onMount } from 'svelte';
 
