@@ -147,7 +147,7 @@
 
 	<!-- Cast Carousel -->
 	<section class="relative -mx-4 md:-mx-6">
-		<h2 class="mb-4 text-2xl font-semibold">Casting principal</h2>
+		<h2 class="mb-4 ml-4 text-2xl font-semibold md:mx-6">Casting principal</h2>
 
 		<!-- Flèches latérales (desktop only) -->
 		{#if showLeft}
