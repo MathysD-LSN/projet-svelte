@@ -1,10 +1,12 @@
 import type { PageLoad } from './$types';
 import { getMovies } from '../../utils/getMovies';
+import { fetchMovieGenres } from '../../utils/getMoviesGenders';
 
 export const load: PageLoad = async () => {
 	try {
 		const movies = await getMovies();
-		return { movies };
+		const genres = await fetchMovieGenres();
+		return { genres, movies };
 	} catch (err) {
 		console.error('Erreur chargement catalogue:', err);
 		return {

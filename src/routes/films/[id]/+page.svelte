@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let data;
 	const { movieData, alternativeMovies, credits, videos = { results: [] } } = data;
-	console.log('Movie data:', data);
 	const casts = credits.cast.slice(0, 10);
 	const trailer = videos.results.find((v: { type: string }) => v.type === 'Trailer');
 

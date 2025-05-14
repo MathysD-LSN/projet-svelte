@@ -9,9 +9,6 @@
   const dateB = b.release_date ? new Date(b.release_date).getTime() : 0;
   return dateB - dateA;
   }).slice(0,5);
-
-    console.log('Data:', data);
-    console.log(sortedMovies);
   </script>
   
   <div class="flex gap-4">

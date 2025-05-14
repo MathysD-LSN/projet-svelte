@@ -1,20 +1,30 @@
 <script lang="ts">
 	import type { Movie } from '../../utils/getMovies';
-	export let data: { movies: Movie[] };
-
+	import type { Genre } from '../../utils/getMoviesGenders';
+	export let data: { movies: Movie[], genres: Genre[] };
+	
+	const genres = data.genres;
 	const movies = data.movies;
+
 	const itemsPerPage = 20;
 	let currentPage = 1;
 
 	let selectedGenre: string = '';
-	let maxRating: number = 10;
+	let minRating: number = 0;
+
+	
+	$: if (selectedGenre || minRating) {
+		currentPage = 1;
+	}
 
 	$: filteredMovies = movies.filter((movie) => {
-		const genreMatch = !selectedGenre || movie.genre === selectedGenre;
+		const selectedGenreId = selectedGenre ? parseInt(selectedGenre) : null;
+		const genreMatch = selectedGenreId === null || movie.genre_ids?.includes(selectedGenreId);
 		const rating = movie.vote_average ?? 0;
-		const ratingMatch = rating <= maxRating;
+		const ratingMatch = rating >= minRating
 		return genreMatch && ratingMatch;
 	});
+
 
 	$: totalPages = Math.ceil(filteredMovies.length / itemsPerPage);
 	$: paginated = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -71,36 +81,21 @@
 							<span class="mb-1 block font-medium">Genre</span>
 							<select bind:value={selectedGenre} class="w-full rounded border-gray-300 p-2">
 								<option value="">Tous</option>
-								<option value="Action">Action</option>
-								<option value="Animation">Animation</option>
-								<option value="Aventure">Aventure</option>
-								<option value="Comédie">Comédie</option>
-								<option value="Crime">Crime</option>
-								<option value="Crime">Documentaire</option>
-								<option value="Drame">Drame</option>
-								<option value="Familial">Familial</option>
-								<option value="Fantastique">Fantastique</option>
-								<option value="Guerre">Guerre</option>
-								<option value="Histoire">Histoire</option>
-								<option value="Horreur">Horreur</option>
-								<option value="Musique">Musique</option>
-								<option value="Mystère">Mystère</option>
-								<option value="Romance">Romance</option>
-								<option value="Science-Fiction">Science-Fiction</option>
-								<option value="Thriller">Thriller</option>
-								<option value="Téléfilm">Téléfilm</option>
-								<option value="Western">Western</option>
+								{#each genres as genre}
+									<option value={genre.id}>{genre.name}</option>
+								{/each}
 							</select>
+
 						</label>
 
 						<label class="block">
-							<span class="mb-1 block font-medium">Note maximale</span>
+							<span class="mb-1 block font-medium">Note minimale</span>
 							<input
 								type="range"
 								min="0"
 								max="10"
 								step="1"
-								bind:value={maxRating}
+								bind:value={minRating}
 								list="rating-ticks"
 								class="w-full"
 							/>
@@ -127,37 +122,21 @@
 					<label class="block">
 						<span class="mb-1 block font-medium">Genre</span>
 						<select bind:value={selectedGenre} class="w-full rounded border-gray-300 p-2">
-							<option value="">Tous</option>
-							<option value="Action">Action</option>
-							<option value="Animation">Animation</option>
-							<option value="Aventure">Aventure</option>
-							<option value="Comédie">Comédie</option>
-							<option value="Crime">Crime</option>
-							<option value="Crime">Documentaire</option>
-							<option value="Drame">Drame</option>
-							<option value="Familial">Familial</option>
-							<option value="Fantastique">Fantastique</option>
-							<option value="Guerre">Guerre</option>
-							<option value="Histoire">Histoire</option>
-							<option value="Horreur">Horreur</option>
-							<option value="Musique">Musique</option>
-							<option value="Mystère">Mystère</option>
-							<option value="Romance">Romance</option>
-							<option value="Science-Fiction">Science-Fiction</option>
-							<option value="Thriller">Thriller</option>
-							<option value="Téléfilm">Téléfilm</option>
-							<option value="Western">Western</option>
-						</select>
+								<option value="">Tous</option>
+								{#each genres as genre}
+									<option value={genre.id}>{genre.name}</option>
+								{/each}
+							</select>
 					</label>
 
 					<label class="block">
-						<span class="mb-1 block font-medium">Note maximale</span>
+						<span class="mb-1 block font-medium">Note minimale</span>
 						<input
 							type="range"
 							min="0"
 							max="10"
 							step="1"
-							bind:value={maxRating}
+							bind:value={minRating}
 							list="rating-ticks"
 							class="w-full"
 						/>
@@ -180,9 +159,11 @@
 
 		<!-- Liste de films paginée -->
 		<section class="w-full md:w-3/4">
-			{#if paginated.length === 0}
-				<p class="py-4">Chargement des films…</p>
-			{:else}
+			{#if movies.length === 0}
+	<p class="py-4">Chargement des films…</p>
+{:else if filteredMovies.length === 0}
+	<p class="py-4">Aucun film ne correspond à vos filtres.</p>
+{:else}
 				<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 					{#each paginated as movie}
 						<li class="mx-auto w-full overflow-hidden rounded-2xl bg-white shadow-lg">
