@@ -127,24 +127,6 @@
 		</section>
 	{/if}
 
-	<!-- Alternative Movies -->
-	<section>
-		<h2 class="mb-4 text-2xl font-semibold">Suggestions similaires</h2>
-		<ul class="list-disc space-y-2 pl-4 text-gray-700">
-			{#if alternativeMovies?.titles?.length}
-				{#each alternativeMovies.titles as t}
-					<li>
-						<a href={`/films/${alternativeMovies.id}`} class="text-blue-600 hover:underline">
-							{t.title || t.name}
-						</a>
-					</li>
-				{/each}
-			{:else}
-				<li>Aucune suggestion disponible.</li>
-			{/if}
-		</ul>
-	</section>
-
 	<!-- Cast Carousel -->
 	<section class="relative -mx-4 md:-mx-6">
 		<h2 class="mb-4 ml-4 text-2xl font-semibold md:mx-6">Casting principal</h2>
