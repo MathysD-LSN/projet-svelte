@@ -1,6 +1,6 @@
 import type { PageLoad } from './$types';
-import { getMovies } from '../../utils/getMovies';
-import { fetchMovieGenres } from '../../utils/getMoviesGenders';
+import { getMovies } from '../../utils/moviesUtils';
+import { fetchMovieGenres } from '../../utils/moviesUtils';
 
 export const load: PageLoad = async () => {
 	try {

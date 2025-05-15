@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import { searchMovies } from '../../utils/searchMovies';
+	import { searchMovies } from '../../utils/moviesUtils';
 
 	const dispatch = createEventDispatcher();
 	let query = '';

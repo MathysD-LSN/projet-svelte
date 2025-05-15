@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Movie } from '../../utils/getMovies';
-	import type { Genre } from '../../utils/getMoviesGenders';
+	import type { Movie } from '../../utils/moviesUtils';
+	import type { Genre } from '../../utils/moviesUtils';
 	export let data: { movies: Movie[], genres: Genre[] };
 	
 	const genres = data.genres;
 	const movies = data.movies;
-	console.log(movies);
+
 	const itemsPerPage = 20;
 	let currentPage = 1;
 

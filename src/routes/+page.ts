@@ -1,5 +1,5 @@
-import { getMovies } from '../utils/getMovies';
-import type { Movie } from '../utils/getMovies';
+import { getMovies } from '../utils/moviesUtils';
+import type { Movie } from '../utils/moviesUtils';
 
 export async function load() {
 	try {
