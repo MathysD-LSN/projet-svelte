@@ -1,5 +1,5 @@
 <header class="flex items-center justify-between bg-blue-600 px-6 py-4 text-white shadow-md">
-	<h1 class="text-2xl font-bold">CineFilm</h1>
+	<h1 class="text-2xl font-bold"><a href="/">CineFilm</a></h1>
 
 	<nav>
 		<ul class="flex space-x-6 text-lg">
