@@ -48,7 +48,7 @@ Le projet nécessite une clé API TMDB pour fonctionner. Créez un fichier `.env
 VITE_TMDB_API_KEY=<votre_clé_tmdb>
 ```
 
-en remplaçant <votre_clé_tmdb> par votre clé personnelle TMDB. (Astuce : vous pouvez obtenir une clé en créant un compte sur le site de The Movie Database. Cette clé est nécessaire pour autoriser les appels à l’API.)
+en remplaçant <VITE_TMDB_API_KEY> par votre clé personnelle TMDB. (Astuce : vous pouvez obtenir une clé en créant un compte sur le site de The Movie Database. Cette clé est nécessaire pour autoriser les appels à l’API.)
 
 Pour avoir votre clé API, cliquez sur ce lien https://www.themoviedb.org/settings/api et créez vous un compte.
 
