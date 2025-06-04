@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Movie } from '../../utils/moviesUtils';
 	import type { Genre } from '../../utils/moviesUtils';
-	export let data: { movies: Movie[], genres: Genre[] };
-	
+	export let data: { movies: Movie[]; genres: Genre[] };
+
 	const genres = data.genres;
 	const movies = data.movies;
 
@@ -12,7 +12,6 @@
 	let selectedGenre: string = '';
 	let minRating: number = 0;
 
-	
 	$: if (selectedGenre || minRating) {
 		currentPage = 1;
 	}
@@ -21,10 +20,9 @@
 		const selectedGenreId = selectedGenre ? parseInt(selectedGenre) : null;
 		const genreMatch = selectedGenreId === null || movie.genre_ids?.includes(selectedGenreId);
 		const rating = movie.vote_average ?? 0;
-		const ratingMatch = rating >= minRating
+		const ratingMatch = rating >= minRating;
 		return genreMatch && ratingMatch;
 	});
-
 
 	$: totalPages = Math.ceil(filteredMovies.length / itemsPerPage);
 	$: paginated = filteredMovies.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -53,7 +51,7 @@
 <div class="mx-auto mt-12 w-full px-4 text-center sm:max-w-lg md:max-w-4xl lg:max-w-[90%]">
 	<!-- Bouton filtres (mobile) -->
 	<button
-		class="sticky top-10 z-30 mb-4 flex w-full items-center justify-between rounded-lg bg-white p-4 shadow-sm md:hidden"
+		class="sticky top-10 z-30 mb-4 flex w-full items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:hidden"
 		on:click={toggleFilters}
 	>
 		<span class="text-lg font-semibold text-gray-900">Filtres</span>
@@ -85,7 +83,6 @@
 									<option value={genre.id}>{genre.name}</option>
 								{/each}
 							</select>
-
 						</label>
 
 						<label class="block">
@@ -122,11 +119,11 @@
 					<label class="block">
 						<span class="mb-1 block font-medium">Genre</span>
 						<select bind:value={selectedGenre} class="w-full rounded border-gray-300 p-2">
-								<option value="">Tous</option>
-								{#each genres as genre}
-									<option value={genre.id}>{genre.name}</option>
-								{/each}
-							</select>
+							<option value="">Tous</option>
+							{#each genres as genre}
+								<option value={genre.id}>{genre.name}</option>
+							{/each}
+						</select>
 					</label>
 
 					<label class="block">
@@ -160,10 +157,10 @@
 		<!-- Liste de films paginée -->
 		<section class="w-full md:w-3/4">
 			{#if movies.length === 0}
-	<p class="py-4">Chargement des films…</p>
-{:else if filteredMovies.length === 0}
-	<p class="py-4">Aucun film ne correspond à vos filtres.</p>
-{:else}
+				<p class="py-4">Chargement des films…</p>
+			{:else if filteredMovies.length === 0}
+				<p class="py-4">Aucun film ne correspond à vos filtres.</p>
+			{:else}
 				<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 					{#each paginated as movie}
 						<li class="mx-auto w-full overflow-hidden rounded-2xl bg-white shadow-lg">
