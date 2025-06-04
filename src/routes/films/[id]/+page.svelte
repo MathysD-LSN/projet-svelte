@@ -58,6 +58,10 @@
 	$: formattedVoteAvg = movieData.vote_average != null ? movieData.vote_average.toFixed(1) : '';
 </script>
 
+<svelte:head>
+	<title>CineFilm – {movieData.title}</title>
+</svelte:head>
+
 <!-- Banner with background image and overlay -->
 <section
 	class="relative flex h-80 w-full items-center justify-center bg-cover bg-center sm:h-100 md:h-140"

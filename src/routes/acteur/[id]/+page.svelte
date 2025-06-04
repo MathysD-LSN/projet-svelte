@@ -15,6 +15,10 @@
 		.slice(0, 5);
 </script>
 
+<svelte:head>
+	<title>CineFilm – {name}</title>
+</svelte:head>
+
 <main class="mx-auto max-w-[90%] space-y-12 px-4 py-8">
 	<!-- Section Profil -->
 	<section class="flex flex-col items-center gap-6 md:flex-row">

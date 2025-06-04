@@ -48,6 +48,10 @@
 	const toggleFilters = () => (showFilters = !showFilters);
 </script>
 
+<svelte:head>
+	<title>CineFilm – Catalogue</title>
+</svelte:head>
+
 <div class="mx-auto mt-12 w-full px-4 text-center sm:max-w-lg md:max-w-4xl lg:max-w-[90%]">
 	<!-- Bouton filtres (mobile) -->
 	<button

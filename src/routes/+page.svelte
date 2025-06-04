@@ -5,6 +5,10 @@
 	const movies = data.movies;
 </script>
 
+<svelte:head>
+	<title>CineFilm</title>
+</svelte:head>
+
 <Hero onSearch={() => {}} />
 
 <div class="mx-auto mt-12 w-full pt-4 pb-12 text-center sm:max-w-lg md:max-w-2xl lg:max-w-[90%]">

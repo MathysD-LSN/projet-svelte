@@ -26,6 +26,10 @@
 	$: imagePath = hasImage ? `/images/${status}.png` : '';
 </script>
 
+<svelte:head>
+	<title>CineFilm – {message}</title>
+</svelte:head>
+
 <div class="flex min-h-[calc(100vh-64px)] items-center justify-center bg-gray-50 px-4">
 	<div class="w-full max-w-lg py-12 text-center">
 		{#if hasImage}
