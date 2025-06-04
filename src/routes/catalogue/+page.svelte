@@ -51,7 +51,7 @@
 <div class="mx-auto mt-12 w-full px-4 text-center sm:max-w-lg md:max-w-4xl lg:max-w-[90%]">
 	<!-- Bouton filtres (mobile) -->
 	<button
-		class="sticky top-10 z-30 mb-4 flex w-full items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:hidden"
+		class="sticky top-20 z-30 mb-4 flex w-full items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:hidden"
 		on:click={toggleFilters}
 	>
 		<span class="text-lg font-semibold text-gray-900">Filtres</span>
@@ -69,9 +69,9 @@
 
 	<div class="flex flex-col md:flex-row">
 		<!-- Panneau de filtres -->
-		<aside class="sticky top-30 z-20 w-full md:top-12 md:w-1/4 md:self-start md:pr-4">
+		<aside class="sticky top-40 z-20 w-full md:top-18 md:w-1/4 md:self-start md:pr-4">
 			{#if showFilters}
-				<div class="mb-6 rounded-lg bg-white p-4 shadow-lg md:hidden">
+				<div class="mb-6 rounded-lg border border-gray-200 bg-white p-4 shadow-lg md:hidden">
 					<h2 class="mb-2 font-semibold text-gray-900">Filtres</h2>
 					<div class="space-y-4 text-left text-sm text-gray-700">
 						<!-- Genre -->

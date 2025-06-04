@@ -2,7 +2,8 @@
 	let menuOpen = false;
 </script>
 
-<header class="relative z-50 bg-blue-600 px-6 py-4 text-white shadow-md">
+<!-- Header -->
+<header class="fixed top-0 right-0 left-0 z-50 bg-blue-600 px-6 py-4 text-white shadow-md">
 	<div class="flex items-center justify-between">
 		<h1 class="text-2xl font-bold"><a href="/">CineFilm</a></h1>
 
@@ -52,15 +53,19 @@
 				<a
 					href="/"
 					on:click={() => (menuOpen = false)}
-					class="block w-full text-blue-600 transition hover:text-blue-800">Accueil</a
+					class="block w-full text-blue-600 transition hover:text-blue-800"
 				>
+					Accueil
+				</a>
 			</li>
 			<li class="rounded-lg px-4 pt-2 pb-4 transition duration-300 hover:bg-blue-50">
 				<a
 					href="/catalogue"
 					on:click={() => (menuOpen = false)}
-					class="block w-full text-blue-600 transition hover:text-blue-800">Catalogue</a
+					class="block w-full text-blue-600 transition hover:text-blue-800"
 				>
+					Catalogue
+				</a>
 			</li>
 		</ul>
 	</nav>
