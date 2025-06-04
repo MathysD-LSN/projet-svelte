@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let data;
-	const { movieData, alternativeMovies, credits} = data;
+	const { movieData, alternativeMovies, credits } = data;
 	const casts = credits.cast.slice(0, 10);
 	const trailer = movieData?.videos?.results?.find((v: { type: string }) => v.type === 'Trailer');
 
@@ -29,6 +29,33 @@
 			window.removeEventListener('resize', updateButtons);
 		};
 	});
+
+	// --- Nouveau formatage ---
+
+	// Formatage de la date de sortie en français (JJ/MM/AAAA)
+	$: formattedReleaseDate = movieData.release_date
+		? new Date(movieData.release_date).toLocaleDateString('fr-FR')
+		: '';
+
+	// Conversion de la durée en "XhYY"
+	$: formattedRuntime = movieData.runtime
+		? `${Math.floor(movieData.runtime / 60)}h${String(movieData.runtime % 60).padStart(2, '0')}`
+		: '';
+
+	// Formatage du budget
+	$: formattedBudget = (() => {
+		const b = movieData.budget || 0;
+		if (b >= 1_000_000) {
+			return `${Math.round(b / 1_000_000)}M`;
+		} else if (b >= 1_000) {
+			return `${Math.round(b / 1_000)}k`;
+		} else {
+			return b.toString();
+		}
+	})();
+
+	// Arrondir la note à 1 décimale
+	$: formattedVoteAvg = movieData.vote_average != null ? movieData.vote_average.toFixed(1) : '';
 </script>
 
 <!-- Banner with background image and overlay -->
@@ -52,10 +79,10 @@
 		<div
 			class="mx-auto flex flex-wrap justify-center gap-6 text-sm text-gray-300 sm:text-base md:text-lg"
 		>
-			<span><strong>Sortie :</strong> {movieData.release_date}</span>
-			<span><strong>Durée :</strong> {movieData.runtime} min</span>
-			<span><strong>Note :</strong> {movieData.vote_average} / 10</span>
-			<span><strong>Budget :</strong> ${movieData.budget.toLocaleString()} USD</span>
+			<span><strong>Sortie :</strong> {formattedReleaseDate}</span>
+			<span><strong>Durée :</strong> {formattedRuntime}</span>
+			<span><strong>Note :</strong> {formattedVoteAvg} / 10</span>
+			<span><strong>Budget :</strong> {formattedBudget} USD</span>
 		</div>
 		{#if trailer}
 			<a
@@ -111,7 +138,7 @@
 			</div>
 		</div>
 	</section>
-	<!-- Video Section -->
+
 	{#if trailer}
 		<section>
 			<h2 class="mb-4 text-2xl font-semibold">Bande-annonce</h2>
@@ -130,7 +157,6 @@
 	<section class="relative -mx-4 md:-mx-6">
 		<h2 class="mb-4 ml-4 text-2xl font-semibold md:mx-6">Casting principal</h2>
 
-		<!-- Flèches latérales (desktop only) -->
 		{#if showLeft}
 			<button
 				on:click={() => scrollByAmount(-200)}
@@ -148,7 +174,6 @@
 				{#each casts as cast}
 					<li class="w-40 flex-shrink-0 snap-start sm:w-44 md:w-48">
 						<div class="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg">
-							<!-- Image carrée -->
 							<div class="aspect-square w-full overflow-hidden rounded-t-2xl">
 								{#if cast.profile_path}
 									<img
@@ -160,7 +185,6 @@
 									<div class="h-full w-full bg-gray-200"></div>
 								{/if}
 							</div>
-							<!-- Nom + rôle -->
 							<div class="flex flex-grow flex-col p-3 sm:p-4">
 								<h3 class="mb-1 text-left text-base font-semibold text-gray-900 sm:text-lg">
 									{cast.name}
@@ -181,7 +205,6 @@
 			</ul>
 		</div>
 
-		<!-- Flèches latérales (desktop only) -->
 		{#if showRight}
 			<button
 				on:click={() => scrollByAmount(200)}
@@ -191,7 +214,6 @@
 			</button>
 		{/if}
 
-		<!-- Boutons en dessous (mobile only) -->
 		<div class="mt-2 flex justify-between md:hidden">
 			<button
 				on:click={() => scrollByAmount(-200)}

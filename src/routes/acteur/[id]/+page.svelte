@@ -3,6 +3,9 @@
 	const { actorData, moviesData } = data;
 	const { name, birthday, gender, profile_path, biography } = actorData;
 
+	// Formattage français de la date de naissance
+	$: formattedBirthday = birthday ? new Date(birthday).toLocaleDateString('fr-FR') : '';
+
 	const sortedMovies = [...moviesData.cast]
 		.sort((a, b) => {
 			const dateA = a.release_date ? new Date(a.release_date).getTime() : 0;
@@ -13,7 +16,7 @@
 </script>
 
 <main class="mx-auto max-w-[90%] space-y-12 px-4 py-8">
-	<!-- Section Profil => Synopsis style -->
+	<!-- Section Profil -->
 	<section class="flex flex-col items-center gap-6 md:flex-row">
 		<!-- Photo -->
 		<div class="md:w-1/2">
@@ -47,7 +50,7 @@
 					<!-- Date de naissance -->
 					<div class="rounded-lg bg-gray-50 p-4 shadow">
 						<h3 class="font-medium">Né le</h3>
-						<p class="text-gray-600">{birthday}</p>
+						<p class="text-gray-600">{formattedBirthday}</p>
 					</div>
 					<!-- Genre -->
 					<div class="rounded-lg bg-gray-50 p-4 shadow">
@@ -83,7 +86,9 @@
 						<h3 class="mb-1 line-clamp-2 text-left text-sm font-semibold text-gray-900">
 							{movie.title}
 						</h3>
-						<p class="text-left text-xs text-gray-600">{movie.release_date}</p>
+						<p class="text-left text-xs text-gray-600">
+							{movie.release_date ? new Date(movie.release_date).toLocaleDateString('fr-FR') : ''}
+						</p>
 					</div>
 				</a>
 			{/each}
