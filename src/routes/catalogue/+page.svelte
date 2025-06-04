@@ -182,7 +182,7 @@
 								</p>
 								<a
 									href={`/films/${movie.id}`}
-									class="flex items-center gap-1 self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+									class="flex items-center gap-1 self-start rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +208,7 @@
 				<!-- Pagination -->
 				<nav class="my-12 flex items-center justify-center space-x-2">
 					<button
-						class="rounded border px-3 py-1 duration-300 hover:border-blue-500 hover:bg-blue-500 hover:text-white disabled:opacity-50"
+						class="rounded border px-3 py-1 duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white disabled:opacity-50"
 						on:click={() => (currentPage = currentPage - 1)}
 						disabled={currentPage === 1}
 					>
@@ -221,7 +221,7 @@
 						{:else}
 							<button
 								class="rounded border px-3 py-1 transition duration-300 hover:bg-blue-300
-									{currentPage === p ? 'border-blue-500 bg-blue-500 text-white' : 'bg-white text-gray-700'}"
+									{currentPage === p ? 'border-blue-600 bg-blue-600 text-white' : 'bg-white text-gray-700'}"
 								on:click={() => (currentPage = p)}
 							>
 								{p}
@@ -230,7 +230,7 @@
 					{/each}
 
 					<button
-						class="rounded border px-3 py-1 duration-300 hover:border-blue-500 hover:bg-blue-500 hover:text-white disabled:opacity-50"
+						class="rounded border px-3 py-1 duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white disabled:opacity-50"
 						on:click={() => (currentPage = currentPage + 1)}
 						disabled={currentPage === totalPages}
 					>

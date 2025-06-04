@@ -194,7 +194,7 @@
 								</p>
 								<a
 									href={`/acteur/${cast.id}`}
-									class="mt-2 inline-flex items-center gap-1 self-start rounded-lg bg-blue-500 px-3 py-1 text-xs text-white transition duration-300 hover:bg-blue-600 sm:text-sm"
+									class="mt-2 inline-flex items-center gap-1 self-start rounded-lg bg-blue-600 px-3 py-1 text-xs text-white transition duration-300 hover:bg-blue-700 sm:text-sm"
 								>
 									Voir Plus
 								</a>

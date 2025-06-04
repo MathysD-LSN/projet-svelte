@@ -35,7 +35,7 @@
 						</p>
 						<a
 							href={'/films/' + movie.id}
-							class="flex items-center gap-1 self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+							class="flex items-center gap-1 self-start rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
