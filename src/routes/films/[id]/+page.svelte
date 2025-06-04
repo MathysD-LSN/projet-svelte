@@ -58,6 +58,10 @@
 	$: formattedVoteAvg = movieData.vote_average != null ? movieData.vote_average.toFixed(1) : '';
 </script>
 
+<svelte:head>
+	<title>CineFilm – {movieData.title}</title>
+</svelte:head>
+
 <!-- Banner with background image and overlay -->
 <section
 	class="relative flex h-80 w-full items-center justify-center bg-cover bg-center sm:h-100 md:h-140"
@@ -194,7 +198,7 @@
 								</p>
 								<a
 									href={`/acteur/${cast.id}`}
-									class="mt-2 inline-flex items-center gap-1 self-start rounded-lg bg-blue-500 px-3 py-1 text-xs text-white transition duration-300 hover:bg-blue-600 sm:text-sm"
+									class="mt-2 inline-flex items-center gap-1 self-start rounded-lg bg-blue-600 px-3 py-1 text-xs text-white transition duration-300 hover:bg-blue-700 sm:text-sm"
 								>
 									Voir Plus
 								</a>

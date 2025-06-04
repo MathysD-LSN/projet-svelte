@@ -3,7 +3,7 @@
 </script>
 
 <!-- Header -->
-<header class="fixed top-0 right-0 left-0 z-50 bg-blue-600 px-6 py-4 text-white shadow-md">
+<header class="fixed top-0 right-0 left-0 z-50 bg-blue-700 px-6 py-4 text-white shadow-md">
 	<div class="flex items-center justify-between">
 		<h1 class="text-2xl font-bold"><a href="/">CineFilm</a></h1>
 
@@ -53,7 +53,7 @@
 				<a
 					href="/"
 					on:click={() => (menuOpen = false)}
-					class="block w-full text-blue-600 transition hover:text-blue-800"
+					class="block w-full text-blue-700 transition hover:text-blue-800"
 				>
 					Accueil
 				</a>
@@ -62,7 +62,7 @@
 				<a
 					href="/catalogue"
 					on:click={() => (menuOpen = false)}
-					class="block w-full text-blue-600 transition hover:text-blue-800"
+					class="block w-full text-blue-700 transition hover:text-blue-800"
 				>
 					Catalogue
 				</a>

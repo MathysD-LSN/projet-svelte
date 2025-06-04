@@ -79,13 +79,13 @@
 			bind:value={query}
 			placeholder="Rechercher un film..."
 			on:input={handleInput}
-			class="flex-1 rounded-l-md border border-blue-500 p-3 text-black placeholder-gray-500 focus:border-blue-600 focus:shadow-inner focus:outline-none"
+			class="flex-1 rounded-l-md border border-blue-600 p-3 text-black placeholder-gray-500 focus:border-blue-700 focus:shadow-inner focus:outline-none"
 			on:keydown={(e) => e.stopPropagation()}
 		/>
 		<button
 			type="button"
 			on:click={handleClick}
-			class="flex w-32 gap-2 rounded-r-md border border-l-0 border-blue-500 bg-blue-500 p-3 text-white transition duration-300 hover:bg-blue-600 focus:border-blue-600 focus:shadow-inner focus:outline-none"
+			class="flex w-32 gap-2 rounded-r-md border border-l-0 border-blue-600 bg-blue-600 p-3 text-white transition duration-300 hover:bg-blue-700 focus:border-blue-700 focus:shadow-inner focus:outline-none"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

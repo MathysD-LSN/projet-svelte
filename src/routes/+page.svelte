@@ -5,6 +5,10 @@
 	const movies = data.movies;
 </script>
 
+<svelte:head>
+	<title>CineFilm</title>
+</svelte:head>
+
 <Hero onSearch={() => {}} />
 
 <div class="mx-auto mt-12 w-full pt-4 pb-12 text-center sm:max-w-lg md:max-w-2xl lg:max-w-[90%]">
@@ -35,7 +39,7 @@
 						</p>
 						<a
 							href={'/films/' + movie.id}
-							class="flex items-center gap-1 self-start rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+							class="flex items-center gap-1 self-start rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

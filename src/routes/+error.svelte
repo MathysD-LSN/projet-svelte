@@ -26,12 +26,16 @@
 	$: imagePath = hasImage ? `/images/${status}.png` : '';
 </script>
 
+<svelte:head>
+	<title>CineFilm – {message}</title>
+</svelte:head>
+
 <div class="flex min-h-[calc(100vh-64px)] items-center justify-center bg-gray-50 px-4">
 	<div class="w-full max-w-lg py-12 text-center">
 		{#if hasImage}
 			<img src={imagePath} alt="Erreur" class="mx-auto mb-6 h-40 object-contain sm:h-52" />
 		{:else}
-			<h1 class="mb-6 text-6xl font-bold text-blue-600 sm:text-7xl">Erreur</h1>
+			<h1 class="mb-6 text-6xl font-bold text-blue-700 sm:text-7xl">Erreur</h1>
 		{/if}
 
 		<h2 class="mb-4 text-2xl font-semibold text-gray-800 sm:text-3xl">
@@ -44,7 +48,7 @@
 
 		<a
 			href="/"
-			class="inline-flex items-center gap-2 rounded-lg bg-blue-500 px-5 py-3 text-sm text-white transition hover:bg-blue-600 sm:text-base"
+			class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm text-white transition hover:bg-blue-700 sm:text-base"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
